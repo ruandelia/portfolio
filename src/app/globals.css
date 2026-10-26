@@ -8,8 +8,8 @@
 
   --gray-950: #0a0a0a;
   --gray-900: #0d0d0f;
-  --gray-800: #2f2f2f;  /* ornamentos decorativos das seções */
   --gray-850: #141414;
+  --gray-800: #2f2f2f;  /* ornamentos decorativos das seções */
   --gray-500: #808080;
   --gray-400: #a6a6a6;
   --gray-200: #e6e6e6;
@@ -64,17 +64,17 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  /* Tamanhos em rem (1rem = 16px), respeitando o zoom de fonte do usuário */
-  --fs-label: 0.75rem;     /* 12px: rótulos de seção ("EXPERIÊNCIA") */
-  --fs-badge: 0.75rem;     /* 12px: etiquetas de status (fixo em todas as telas) */
-  --fs-lead: 0.9375rem;    /* 15px: texto de destaque (Sobre) */
-  --fs-subtitle: 1.25rem;  /* 20px: subtítulo do hero */
-  --fs-small: 0.8125rem;   /* 13px: barra do terminal, categoria dos selos */
-  --fs-body: 0.9375rem;    /* 15px: parágrafos e botões */
-  --fs-item: 1.0625rem;    /* 17px: títulos de itens (cargo, projeto) */
-  --fs-section: 1.5rem;    /* 24px: títulos de seção */
-  --fs-h1: 2rem;           /* 32px: "Olá, eu sou o Ruan" */
+  /* Tamanhos em rem (1rem = 16px por padrão), respeitando o tamanho de fonte escolhido pelo usuário */
   --fs-terminal: 0.6875rem; /* 11px: texto do terminal no mobile */
+  --fs-label: 0.75rem;      /* 12px: rótulos de seção ("EXPERIÊNCIA") */
+  --fs-badge: 0.75rem;      /* 12px: etiquetas de status (fixo em todas as telas) */
+  --fs-small: 0.8125rem;    /* 13px: barra do terminal, categoria dos selos */
+  --fs-body: 0.9375rem;     /* 15px: parágrafos e botões */
+  --fs-lead: 0.9375rem;     /* 15px: texto de destaque (Sobre) */
+  --fs-item: 1.0625rem;     /* 17px: títulos de itens (cargo, projeto) */
+  --fs-subtitle: 1.25rem;   /* 20px: subtítulo do hero */
+  --fs-section: 1.5rem;     /* 24px: títulos de seção */
+  --fs-h1: 2rem;            /* 32px: "Olá, eu sou o Ruan" */
 
   /* Pesos usados no design */
   --fw-regular: 400;
@@ -107,14 +107,14 @@
   --space-16: 4rem;    /* 64px */
   --space-32: 8rem;    /* 128px: espaço entre seções no desktop */
 
-  /* Layout (mobile; o desktop redefine na etapa 9) */
+  /* Layout (mobile; o desktop redefine */
   --space-gutter: var(--space-6);    /* margem lateral da página */
   --space-section: var(--space-16);  /* padding vertical das seções */
   --container-max: 83.75rem;         /* 1340px: coluna de conteúdo do desktop */
 
   /* Tamanhos de controles */
   --size-button: 3rem;   /* 48px: altura dos botões e ícones sociais */
-  --size-touch: 2.75rem; /* 44px: área mínima de toque (WCAG 2.5.5) */
+  --size-touch: 2.75rem; /* 44px: área de toque confortável (WCAG 2.5.5, nível AAA; o mínimo AA é 24px) */
 
   /* Raios de borda: em px, porque não precisam crescer com a fonte */
   --radius-sm: 6px;      /* botão de fechar do toast */
@@ -204,6 +204,18 @@ p {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* Rede de segurança: desliga animações para quem pediu menos movimento,
+   mesmo que algum componente esqueça de tratar */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
