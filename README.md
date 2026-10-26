@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ruan D'elia — Portfólio
 
-## Getting Started
+Site de portfólio pessoal com foco em **Cloud, Dados e IA**, com segurança como prática transversal. É, ao mesmo tempo, o meu cartão de visitas e um projeto prático: do design no Figma ao deploy no Google Cloud.
 
-First, run the development server:
+> **Status:** em desenvolvimento, rumo à **v1.0**.
+
+## Stack
+
+| Camada | Tecnologia | Por quê |
+| --- | --- | --- |
+| Design | Figma | Desktop (1680px) e mobile (390px) desenhados antes do código |
+| Framework | Next.js (App Router) com exportação estática | Gera HTML estático: rápido, barato de hospedar e com menos superfície de ataque |
+| Linguagem | TypeScript | Erros de props e de dados aparecem no editor, antes de chegar ao navegador |
+| Estilos | CSS global (tokens do Figma) + CSS Modules | Variáveis do design num só lugar e estilos isolados por componente, sem dependências extras |
+| Qualidade | ESLint (regras do Next.js e de acessibilidade) | Pega bugs e problemas de acessibilidade no JSX |
+| Hospedagem | Google Cloud Run *(planejado)* | Container servindo o build estático, dentro do nível gratuito |
+
+## Rodando localmente
+
+Pré-requisitos: [Node.js](https://nodejs.org/) na versão definida em `.nvmrc` (recomendado instalar via [nvm](https://github.com/nvm-sh/nvm)) e Git.
 
 ```bash
+# clonar o repositório
+git clone git@github.com:ruandelia/portfolio.git
+cd portfolio
+
+# usar a versão do Node fixada no projeto
+nvm use
+
+# instalar as dependências
+npm install
+
+# iniciar o servidor de desenvolvimento em http://localhost:3000
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Outros comandos:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint    # verificar o código com o ESLint
+npm run build   # gerar o build de produção
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Roadmap
 
-## Learn More
+O site é entregue em versões pequenas, cada uma publicada assim que fica pronta.
 
-To learn more about Next.js, take a look at the following resources:
+- [ ] **v1.0** — MVP em português: hero, sobre, experiência, habilidades, projetos e contato
+- [ ] **v1.1** — versão em inglês (`/en/`), seletor de idioma e currículo em inglês
+- [ ] **v1.2** — tradução para Libras com VLibras
+- [ ] **v1.3** — estudo de caso em página própria para cada projeto
+- [ ] **v2** — terminal interativo no hero, chatbot sobre a minha trajetória e alternância de tema
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Princípios do projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Acessibilidade:** HTML semântico, navegação por teclado, contraste adequado e textos alternativos.
+- **Desempenho:** páginas estáticas e fontes servidas pelo próprio site via `next/font`, sem requisições a terceiros.
+- **Segurança:** nenhum segredo no repositório (`.env*` no `.gitignore`), chave SSH com passphrase e e-mail privado nos commits.
+- **Reprodutibilidade:** versão do Node fixada em `.nvmrc` e dependências travadas no `package-lock.json`.
 
-## Deploy on Vercel
+## Autor
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Ruan D'elia** — estagiário em Cloud Services, estudando Google Cloud, Linux e segurança.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<!-- TODO: adicionar o link do LinkedIn quando for publicar -->
