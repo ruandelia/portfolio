@@ -1,49 +1,96 @@
+/*
+ * Cores primitivas: valores crus do design.
+ * Não use direto nos componentes; use os tokens semânticos (--color-*).
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black: #000000;
+  --white: #ffffff;
+
+  --gray-950: #0a0a0a;
+  --gray-900: #0d0d0f;
+  --gray-850: #141414;
+  --gray-500: #808080;
+  --gray-400: #a6a6a6;
+  --gray-200: #e6e6e6;
+
+  --green-400: #73d999;
+  --amber-400: #f5b74e;
+  --amber-600: #b89545;
+  --red-400: #f87171;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/*
+ * Tokens semânticos: o que os componentes usam.
+ * Nomeados pelo uso, não pela cor. O tema claro (V2) redefine só este bloco.
+ */
+:root {
+  /* Fundos */
+  --color-bg: var(--black);
+  --color-surface: var(--gray-900);
+  --color-surface-raised: var(--gray-850);
+
+  /* Textos (do mais forte ao mais sutil) */
+  --color-text-primary: var(--white);
+  --color-text-secondary: var(--gray-200);
+  --color-text-muted: var(--gray-400);
+  --color-text-subtle: var(--gray-500);
+  --color-on-primary: var(--gray-950);
+
+  /* Status */
+  --color-success: var(--green-400);
+  --color-warning: var(--amber-400);
+  --color-progress: var(--amber-600);
+  --color-error: var(--red-400);
+
+  /* Bordas: transparência derivada da primitiva com color-mix() */
+  --color-border: color-mix(in srgb, var(--white) 25%, transparent);
+  --color-border-subtle: color-mix(in srgb, var(--white) 12%, transparent);
+
+  /* Selo "em preparação": par fundo + borda */
+  --color-progress-bg: color-mix(in srgb, var(--amber-600) 8%, transparent);
+  --color-progress-border: color-mix(in srgb, var(--amber-600) 30%, transparent);
 }
 
+/*
+ * Tipografia: escala mobile-first (RNF-UI-01).
+ * Nomes pelo papel no texto. O breakpoint desktop (etapa 9) redefine os tamanhos.
+ */
+:root {
+  /* Famílias: variável do next/font + reserva do sistema */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Tamanhos em rem (1rem = 16px), respeitando o zoom de fonte do usuário */
+  --fs-label: 0.75rem;     /* 12px: rótulos de seção, etiquetas de status */
+  --fs-small: 0.8125rem;   /* 13px: barra do terminal, categoria dos selos */
+  --fs-body: 0.9375rem;    /* 15px: parágrafos e botões */
+  --fs-item: 1.0625rem;    /* 17px: títulos de itens (cargo, projeto) */
+  --fs-section: 1.5rem;    /* 24px: títulos de seção */
+  --fs-h1: 2rem;           /* 32px: "Olá, eu sou o Ruan" */
+  --fs-terminal: 0.6875rem; /* 11px: texto do terminal no mobile */
+
+  /* Pesos usados no design */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Altura de linha e espaçamento entre letras */
+  --lh-tight: 1.2;         /* títulos ("normal" no Figma ≈ 1.2) */
+  --lh-body: 1.5;          /* corpo de texto (150%) */
+  --ls-label: 0.08em;      /* 8% do Figma: em, para acompanhar o tamanho da fonte */
+}
+
+/* Estilo base: o que toda a página herda */
 html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  color-scheme: dark; /* barras de rolagem e controles nativos no tema escuro */
 }
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased; /* texto claro sobre escuro mais nítido no macOS */
 }
