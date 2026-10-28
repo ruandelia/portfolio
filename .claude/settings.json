@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "plan",
+    "disableAutoMode": "disable",
+    "disableBypassPermissionsMode": "disable",
+    "deny": ["Edit", "Write", "NotebookEdit"],
+    "ask": ["Bash"]
+  }
+}
