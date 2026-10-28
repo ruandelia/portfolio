@@ -238,3 +238,31 @@ body {
   line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased; /* texto claro sobre escuro mais nítido no macOS */
 }
+
+/* ===== Utilitários ===== */
+
+/* Esconde da tela, mas mantém para leitores de tela (RF-03, RF-08, RF-21) */
+.visually-hidden,
+.visually-hidden-focusable:not(:focus) {
+  position: absolute;      /* sai do fluxo: não empurra nada ao redor */
+  width: 1px;              /* 1px, não 0: alguns leitores ignoram tamanho zero */
+  height: 1px;
+  margin: -1px;            /* compensa a caixa de 1px */
+  padding: 0;
+  border: 0;
+  overflow: hidden;        /* corta o texto que transborda */
+  clip-path: inset(50%);   /* recorta até não sobrar área visível */
+  white-space: nowrap;     /* evita palavras "coladas" na leitura */
+}
+
+/* Link "Pular para o conteúdo": aparece no canto ao receber foco */
+.visually-hidden-focusable:focus {
+  position: fixed;         /* fica no canto mesmo com a página rolada */
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;            /* acima do header fixo (etapa 4) */
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+}
