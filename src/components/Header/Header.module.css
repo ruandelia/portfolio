@@ -1,0 +1,83 @@
+/* Barra do header (mobile first): logo à esquerda, menu à direita na etapa 6 */
+.header {
+  display: flex;
+  align-items: center; /* centraliza avatar e texto no eixo vertical */
+  justify-content: space-between; /* primeiro item na esquerda, último na direita */
+  gap: var(--space-4); /* respiro mínimo se os itens chegarem perto */
+  padding-block: var(
+    --space-3
+  ); /* cima e baixo: sem height fixa, cresce com o zoom */
+  padding-inline: var(
+    --space-gutter
+  ); /* mesma margem lateral do resto da página */
+}
+
+/* Logo: avatar + ">" + nome, tudo clicável */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-logo); /* base do "em" dos filhos */
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.avatar {
+  width: 2.375rem; /* 38px; vira 51px no desktop (2.5) */
+  height: auto; /* mantém a proporção do arquivo */
+  border-radius: 0.5rem;
+  margin-inline-end: var(--space-3);
+}
+
+.prompt {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-inline-end: 0.3em; /* proporcional ao tamanho da fonte */
+}
+
+.wordmark {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Mobile: a nav e o Currículo vão para o menu da etapa 6 */
+.nav,
+.resume {
+  display: none;
+}
+
+/* Desktop: a nav e o Currículo voltam a aparecer */
+@media (min-width: 64rem) {
+  .avatar {
+    width: 3.1875rem; /* 51px */
+  }
+
+  .nav {
+    display: block;
+  }
+
+  .navList {
+    display: flex;
+    gap: var(--space-10); /* 40px, igual ao Figma */
+  }
+
+  .navLink {
+    font-size: var(--fs-nav);
+    font-weight: 500;
+    color: var(--color-text-muted); /* 7,98:1; o #656565 do Figma reprovava */
+    text-decoration: none;
+  }
+
+  .resume {
+    display: inline-flex; /* sobrescreve o display: none do mobile */
+    align-items: center;
+    gap: var(--space-2); /* espaço para o ícone (2.5c) */
+    padding: var(--space-3) var(--space-4); /* Figma: 10px 16px */
+    border-radius: 0.5rem;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: var(--fs-button);
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
