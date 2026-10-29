@@ -9,7 +9,7 @@
   --gray-950: #0a0a0a;
   --gray-900: #0d0d0f;
   --gray-850: #141414;
-  --gray-800: #2f2f2f;  /* ornamentos decorativos das seções */
+  --gray-800: #2f2f2f; /* ornamentos decorativos das seções */
   --gray-500: #808080;
   --gray-400: #a6a6a6;
   --gray-200: #e6e6e6;
@@ -37,7 +37,12 @@
   --color-text-subtle: var(--gray-500);
   --color-on-primary: var(--gray-950);
   --color-accent: var(--green-400); /* destaque da marca: ">" do prompt */
-  --color-primary: color-mix(in srgb, var(--white) 92%, transparent); /* botões principais */
+  --color-primary: color-mix(
+    in srgb,
+    var(--white) 92%,
+    transparent
+  ); /* botões principais */
+  --color-primary-hover: var(--white); /* hover dos botões principais */
 
   /* Status */
   --color-success: var(--green-400);
@@ -51,7 +56,11 @@
 
   /* Selo "em preparação": par fundo + borda */
   --color-progress-bg: color-mix(in srgb, var(--amber-600) 8%, transparent);
-  --color-progress-border: color-mix(in srgb, var(--amber-600) 30%, transparent);
+  --color-progress-border: color-mix(
+    in srgb,
+    var(--amber-600) 30%,
+    transparent
+  );
 
   /* Decoração (aria-hidden, sem exigência de contraste) */
   --color-ornament: var(--gray-800);
@@ -68,18 +77,19 @@
 
   /* Tamanhos em rem (1rem = 16px por padrão), respeitando o tamanho de fonte escolhido pelo usuário */
   --fs-terminal: 0.6875rem; /* 11px: texto do terminal no mobile */
-  --fs-label: 0.75rem;      /* 12px: rótulos de seção ("EXPERIÊNCIA") */
-  --fs-badge: 0.75rem;      /* 12px: etiquetas de status (fixo em todas as telas) */
-  --fs-small: 0.8125rem;    /* 13px: barra do terminal, categoria dos selos */
-  --fs-body: 0.9375rem;     /* 15px: parágrafos e botões */
-  --fs-lead: 0.9375rem;     /* 15px: texto de destaque (Sobre) */
-  --fs-button: 1rem;        /* 16px: texto dos botões */
-  --fs-item: 1.0625rem;     /* 17px: títulos de itens (cargo, projeto) */
-  --fs-subtitle: 1.25rem;   /* 20px: subtítulo do hero */
-  --fs-logo: 1.375rem;      /* 22px: wordmark do header */
-  --fs-nav: 1.375rem;       /* 22px: links da navbar (desktop) */
-  --fs-section: 1.5rem;     /* 24px: títulos de seção */
-  --fs-h1: 2rem;            /* 32px: "Olá, eu sou o Ruan" */
+  --fs-annotation: 0.6875rem; /* 11px: anotações decorativas da navbar */
+  --fs-label: 0.75rem; /* 12px: rótulos de seção ("EXPERIÊNCIA") */
+  --fs-badge: 0.75rem; /* 12px: etiquetas de status (fixo em todas as telas) */
+  --fs-small: 0.8125rem; /* 13px: barra do terminal, categoria dos selos */
+  --fs-body: 0.9375rem; /* 15px: parágrafos e botões */
+  --fs-lead: 0.9375rem; /* 15px: texto de destaque (Sobre) */
+  --fs-button: 1rem; /* 16px: texto dos botões */
+  --fs-item: 1.0625rem; /* 17px: títulos de itens (cargo, projeto) */
+  --fs-subtitle: 1.25rem; /* 20px: subtítulo do hero */
+  --fs-logo: 1.375rem; /* 22px: wordmark do header */
+  --fs-nav: 1.375rem; /* 22px: links da navbar (desktop) */
+  --fs-section: 1.5rem; /* 24px: títulos de seção */
+  --fs-h1: 2rem; /* 32px: "Olá, eu sou o Ruan" */
 
   /* Pesos usados no design */
   --fw-regular: 400;
@@ -88,9 +98,9 @@
   --fw-bold: 700;
 
   /* Altura de linha e espaçamento entre letras */
-  --lh-tight: 1.2;         /* títulos ("normal" no Figma ≈ 1.2) */
-  --lh-body: 1.5;          /* corpo de texto (150%) */
-  --ls-label: 0.08em;      /* 8% do Figma: em, para acompanhar o tamanho da fonte */
+  --lh-tight: 1.2; /* títulos ("normal" no Figma ≈ 1.2) */
+  --lh-body: 1.5; /* corpo de texto (150%) */
+  --ls-label: 0.08em; /* 8% do Figma: em, para acompanhar o tamanho da fonte */
 }
 
 /*
@@ -99,33 +109,33 @@
  */
 :root {
   /* Escala base */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px: gap entre os botões do hero */
-  --space-4: 1rem;     /* 16px */
-  --space-5: 1.25rem;  /* 20px */
-  --space-6: 1.5rem;   /* 24px */
-  --space-8: 2rem;     /* 32px */
-  --space-10: 2.5rem;  /* 40px: gap entre colunas dos itens da linha do tempo */
-  --space-12: 3rem;    /* 48px */
-  --space-14: 3.5rem;  /* 56px: espaço abaixo dos títulos de seção */
-  --space-16: 4rem;    /* 64px */
-  --space-32: 8rem;    /* 128px: espaço entre seções no desktop */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px: gap entre os botões do hero */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px: gap entre colunas dos itens da linha do tempo */
+  --space-12: 3rem; /* 48px */
+  --space-14: 3.5rem; /* 56px: espaço abaixo dos títulos de seção */
+  --space-16: 4rem; /* 64px */
+  --space-32: 8rem; /* 128px: espaço entre seções no desktop */
 
   /* Layout (mobile; o desktop redefine */
-  --space-gutter: var(--space-6);    /* margem lateral da página */
-  --space-section: var(--space-16);  /* padding vertical das seções */
-  --container-max: 83.75rem;         /* 1340px: coluna de conteúdo do desktop */
+  --space-gutter: var(--space-6); /* margem lateral da página */
+  --space-section: var(--space-16); /* padding vertical das seções */
+  --container-max: 83.75rem; /* 1340px: coluna de conteúdo do desktop */
 
   /* Tamanhos de controles */
-  --size-button: 3rem;   /* 48px: altura dos botões e ícones sociais */
+  --size-button: 3rem; /* 48px: altura dos botões e ícones sociais */
   --size-touch: 2.75rem; /* 44px: área de toque confortável (WCAG 2.5.5, nível AAA; o mínimo AA é 24px) */
 
   /* Raios de borda: em px, porque não precisam crescer com a fonte */
-  --radius-sm: 6px;      /* botão de fechar do toast */
-  --radius-md: 10px;     /* botões, toasts, ícones sociais */
-  --radius-lg: 12px;     /* terminal, cards, selos */
-  --radius-pill: 999px;  /* etiquetas de status */
+  --radius-sm: 6px; /* botão de fechar do toast */
+  --radius-md: 10px; /* botões, toasts, ícones sociais */
+  --radius-lg: 12px; /* terminal, cards, selos */
+  --radius-pill: 999px; /* etiquetas de status */
 }
 
 /*
@@ -136,20 +146,20 @@
 @media (min-width: 64rem) {
   :root {
     /* Tipografia */
-    --fs-label: 1.25rem;     /* 20px */
-    --fs-small: 0.9375rem;   /* 15px: datas da linha do tempo */
-    --fs-body: 1.125rem;     /* 18px: descrições dos itens */
-    --fs-lead: 1.25rem;      /* 20px: texto do Sobre */
-    --fs-item: 1.375rem;     /* 22px: cargos e nomes de projeto */
-    --fs-section: 1.875rem;  /* 30px */
-    --fs-logo: 1.875rem;     /* 30px */
+    --fs-label: 1.25rem; /* 20px */
+    --fs-small: 0.9375rem; /* 15px: datas da linha do tempo */
+    --fs-body: 1.125rem; /* 18px: descrições dos itens */
+    --fs-lead: 1.25rem; /* 20px: texto do Sobre */
+    --fs-item: 1.375rem; /* 22px: cargos e nomes de projeto */
+    --fs-section: 1.875rem; /* 30px */
+    --fs-logo: 1.875rem; /* 30px */
     --fs-subtitle: 2.125rem; /* 34px */
-    --fs-h1: 3.5rem;         /* 56px */
+    --fs-h1: 3.5rem; /* 56px */
     --fs-terminal: 1.125rem; /* 18px */
 
     /* Layout */
-    --space-gutter: var(--space-12);   /* 48px de margem mínima nas laterais */
-    --space-section: var(--space-32);  /* 128px entre seções */
+    --space-gutter: var(--space-12); /* 48px de margem mínima nas laterais */
+    --space-section: var(--space-32); /* 128px entre seções */
   }
 }
 
@@ -250,23 +260,23 @@ body {
 /* Esconde da tela, mas mantém para leitores de tela (RF-03, RF-08, RF-21) */
 .visually-hidden,
 .visually-hidden-focusable:not(:focus) {
-  position: absolute;      /* sai do fluxo: não empurra nada ao redor */
-  width: 1px;              /* 1px, não 0: alguns leitores ignoram tamanho zero */
+  position: absolute; /* sai do fluxo: não empurra nada ao redor */
+  width: 1px; /* 1px, não 0: alguns leitores ignoram tamanho zero */
   height: 1px;
-  margin: -1px;            /* compensa a caixa de 1px */
+  margin: -1px; /* compensa a caixa de 1px */
   padding: 0;
   border: 0;
-  overflow: hidden;        /* corta o texto que transborda */
-  clip-path: inset(50%);   /* recorta até não sobrar área visível */
-  white-space: nowrap;     /* evita palavras "coladas" na leitura */
+  overflow: hidden; /* corta o texto que transborda */
+  clip-path: inset(50%); /* recorta até não sobrar área visível */
+  white-space: nowrap; /* evita palavras "coladas" na leitura */
 }
 
 /* Link "Pular para o conteúdo": aparece no canto ao receber foco */
 .visually-hidden-focusable:focus {
-  position: fixed;         /* fica no canto mesmo com a página rolada */
+  position: fixed; /* fica no canto mesmo com a página rolada */
   top: var(--space-2);
   left: var(--space-2);
-  z-index: 100;            /* acima do header fixo (etapa 4) */
+  z-index: 100; /* acima do header fixo (etapa 4) */
   padding: var(--space-2) var(--space-4);
   background: var(--color-surface-raised);
   color: var(--color-text-primary);
