@@ -58,6 +58,15 @@ O site é entregue em versões pequenas, cada uma publicada assim que fica pront
 - **Segurança:** nenhum segredo no repositório (`.env*` no `.gitignore`), chave SSH com passphrase e e-mail privado nos commits.
 - **Reprodutibilidade:** versão do Node fixada em `.nvmrc` e dependências travadas no `package-lock.json`.
 
+## Uso de IA
+
+O código deste site é escrito por mim. Uso o Claude Code apenas como **revisor**:
+ele aponta problemas e explica o porquê, mas não edita arquivos.
+
+Isso é garantido por configuração, não só por instrução:
+- `.claude/settings.json` bloqueia as ferramentas de edição e exige minha aprovação para qualquer comando de terminal;
+- `CLAUDE.md` define o papel de revisor e as convenções do projeto.
+
 ## Autor
 
 **Ruan D'elia** — estagiário em Cloud Services, estudando Google Cloud, Linux e segurança.
