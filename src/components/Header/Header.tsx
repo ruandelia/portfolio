@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { HeaderContent } from "@/content/types";
 import styles from "./Header.module.css";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
+import { HeaderShell } from "./HeaderShell";
 
 // "2" → "02": formato do callout (#experiencia · 02/05)
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -13,7 +14,7 @@ interface HeaderProps {
 // Sem "use client": é um Server Component e vira HTML estático no build
 export function Header({ content }: HeaderProps) {
   return (
-    <header className={styles.header}>
+    <HeaderShell className={styles.header}>
       {/* "#top" rola ao topo do documento (definido na especificação HTML), sem JS */}
       <a href="#top" aria-label={content.logoLabel} className={styles.logo}>
         {/* alt="" porque é decorativo: o nome acessível vem do aria-label.
@@ -61,6 +62,6 @@ export function Header({ content }: HeaderProps) {
           {content.resume.href.split("/").pop()} ↓
         </span>
       </div>
-    </header>
+    </HeaderShell>
   );
 }

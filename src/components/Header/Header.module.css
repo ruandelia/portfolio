@@ -1,18 +1,43 @@
-/* Barra do header (mobile first): logo à esquerda, menu à direita na etapa 6 */
+/* ===== Header: barra (mobile first) ===== */
+
+/* Logo à esquerda, menu à direita (etapa 6); preso no topo ao rolar */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header); /* acima do conteúdo; cria o contexto da faixa */
   display: flex;
   align-items: center; /* centraliza avatar e texto no eixo vertical */
   justify-content: space-between; /* primeiro item na esquerda, último na direita */
   gap: var(--space-4); /* respiro mínimo se os itens chegarem perto */
-  padding-block: var(
-    --space-3
-  ); /* cima e baixo: sem height fixa, cresce com o zoom */
-  padding-inline: var(
-    --space-gutter
-  ); /* mesma margem lateral do resto da página */
+  /* sem altura fixa: cresce com o zoom */
+  padding-block: var(--space-3);
+  /* mesma margem lateral do resto da página */
+  padding-inline: var(--space-gutter);
+  border-bottom: 1px solid transparent; /* reserva a borda: sem "pulo" de 1px */
+  transition:
+    translate 200ms ease,
+    background-color 200ms ease;
 }
 
-/* Logo: avatar + ">" + nome, tudo clicável */
+/* Estados marcados pelo HeaderShell (JS só decide, o CSS desenha) */
+.header[data-scrolled="true"] {
+  background-color: var(--color-header-scrolled);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--color-border-subtle);
+}
+
+.header[data-hidden="true"] {
+  translate: 0 -100%; /* sobe exatamente a própria altura */
+}
+
+/* Teclado manda: foco por teclado dentro do header o traz de volta.
+   :focus-visible (e não :focus-within) para um clique do mouse não travar o header visível */
+.header[data-hidden="true"]:has(:focus-visible) {
+  translate: none;
+}
+
+/* ===== Logo: avatar + ">" + nome, tudo clicável ===== */
+
 .logo {
   display: flex;
   align-items: center;
@@ -22,7 +47,7 @@
 }
 
 .avatar {
-  width: 2.375rem; /* 38px; vira 51px no desktop (2.5) */
+  width: 2.375rem; /* 38px; 51px no desktop */
   height: auto; /* mantém a proporção do arquivo */
   border-radius: 0.5rem;
   margin-inline-end: var(--space-3);
@@ -40,14 +65,152 @@
   letter-spacing: -0.02em;
 }
 
+/* ===== Nav ===== */
+
 /* Mobile: a nav e o Currículo vão para o menu da etapa 6 */
 .nav,
 .resume {
   display: none;
 }
 
-/* Desktop: a nav e o Currículo voltam a aparecer */
+.navList {
+  position: relative; /* referência para o colchete */
+  list-style: none; /* sem marcadores: é uma nav, não uma lista de texto */
+  margin: 0;
+  padding: 0; /* remove o recuo padrão da <ul> */
+}
+
+.navItem {
+  position: relative; /* referência para posicionar o rótulo */
+}
+
+/* Transição suave; o globals.css zera a duração com prefers-reduced-motion */
+.navLink {
+  transition: color 250ms ease;
+}
+
+.navLink:focus-visible {
+  color: var(--color-text-primary);
+}
+
+/* ===== Currículo ===== */
+
+.resumeWrap {
+  position: relative; /* referência para a anotação */
+}
+
+.resume {
+  transition: background-color 250ms ease;
+}
+
+/* ===== Anotações decorativas (aria-hidden, só desktop) ===== */
+
+.callout {
+  position: absolute;
+  top: calc(100% + var(--space-6)); /* abaixo do link */
+  left: 50%;
+  font-family: var(--font-mono);
+  font-size: var(--fs-annotation);
+  letter-spacing: 0.04em;
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none; /* nunca bloqueia cliques */
+  transition: opacity 150ms ease;
+}
+
+/* Marca acesa: liga o colchete (ou o botão) ao rótulo */
+.callout::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 1px;
+  height: 0.375rem;
+  background: currentColor; /* mesma cor do rótulo */
+}
+
+/* Colchete: linha sob a nav com as pontas para cima */
+.navList::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: calc(100% + var(--space-3));
+  height: 0.375rem; /* 6px: altura das pontas */
+  border: 1px solid var(--color-border);
+  border-top: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+}
+
+/* Anotação do Currículo: rótulo centralizado sob o botão */
+.resumeWrap .callout {
+  top: calc(100% + var(--space-4));
+  translate: -50% 0;
+}
+
+/* Marca: da borda do botão até o rótulo */
+.resumeWrap .callout::before {
+  left: 50%;
+  height: var(--space-4);
+}
+
+/* ===== Hover (só onde existe mouse de verdade) ===== */
+
+@media (hover: hover) {
+  .navLink:hover {
+    color: var(--color-text-primary);
+  }
+
+  .resume:hover {
+    background: var(--color-primary-hover);
+  }
+
+  .navList:has(.navLink:hover, .navLink:focus-visible)::after {
+    opacity: 1;
+  }
+
+  .navLink:hover + .callout,
+  .navLink:focus-visible + .callout,
+  .resume:hover + .callout,
+  .resume:focus-visible + .callout {
+    opacity: 1;
+  }
+}
+
+/* ===== Desktop ===== */
+
 @media (min-width: 64rem) {
+  .header {
+    padding-inline: calc(var(--space-gutter) + var(--space-10));
+    padding-block: calc(var(--space-8) * 2) var(--space-8);
+  }
+
+  /* Faixa arredondada: só aparece depois de rolar */
+  .header::before {
+    content: "";
+    position: absolute;
+    inset: var(--space-8) var(--space-gutter) 0;
+    z-index: -1; /* atrás da logo e dos links */
+    border-radius: 1.25rem;
+    background-color: var(--color-header-pill);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  /* No desktop, a faixa substitui a barra de ponta a ponta do mobile */
+  .header[data-scrolled="true"] {
+    background-color: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+
+  .header[data-scrolled="true"]::before {
+    opacity: 1;
+  }
+
   .avatar {
     width: 3.1875rem; /* 51px */
   }
@@ -71,8 +234,8 @@
   .resume {
     display: inline-flex; /* sobrescreve o display: none do mobile */
     align-items: center;
-    gap: var(--space-2); /* espaço para o ícone (2.5c) */
-    padding: var(--space-3) var(--space-4); /* Figma: 10px 16px */
+    gap: var(--space-2); /* espaço entre ícone e texto */
+    padding: var(--space-3) var(--space-4); /* Figma: 10px 16px; 12px mantém a escala */
     border-radius: 0.5rem;
     background: var(--color-primary);
     color: var(--color-on-primary);
@@ -80,112 +243,4 @@
     font-weight: 600;
     text-decoration: none;
   }
-}
-
-/* Transição suave; o globals.css já zera a duração com prefers-reduced-motion */
-.navLink {
-  transition: color 250ms ease;
-}
-
-@media (hover: hover) {
-  .navLink:hover {
-    color: var(--color-text-primary);
-  }
-}
-
-.navLink:focus-visible {
-  color: var(--color-text-primary);
-}
-
-.resume {
-  transition: background-color 250ms ease;
-}
-
-@media (hover: hover) {
-  .resume:hover {
-    background: var(--color-primary-hover);
-  }
-}
-
-.navItem {
-  position: relative; /* referência para posicionar o rótulo */
-}
-
-.callout {
-  position: absolute;
-  top: calc(100% + var(--space-6)); /* abaixo do link; ajuste com o Figma */
-  left: 50%;
-  font-family: var(--font-mono);
-  font-size: var(--fs-annotation);
-  letter-spacing: 0.04em;
-  color: var(--color-text-subtle);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none; /* nunca bloqueia cliques */
-  transition: opacity 150ms ease;
-}
-
-@media (hover: hover) {
-  .navLink:hover + .callout,
-  .navLink:focus-visible + .callout {
-    opacity: 1;
-  }
-}
-
-.navList {
-  position: relative; /* referência para o colchete */
-}
-
-/* Colchete: linha sob a nav com as pontas para cima */
-.navList::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: calc(100% + var(--space-3));
-  height: 0.375rem; /* 6px: altura das pontas */
-  border: 1px solid var(--color-border);
-  border-top: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 150ms ease;
-}
-
-/* Marca acesa: liga o colchete ao rótulo */
-.callout::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  width: 1px;
-  height: 0.375rem;
-  background: currentColor; /* mesma cor do rótulo */
-}
-
-@media (hover: hover) {
-  .navList:has(.navLink:hover, .navLink:focus-visible)::after {
-    opacity: 1;
-  }
-
-  .navLink:hover + .callout,
-  .navLink:focus-visible + .callout,
-  .resume:hover + .callout,
-  .resume:focus-visible + .callout {
-    opacity: 1;
-  }
-}
-
-.resumeWrap {
-  position: relative; /* referência para a anotação */
-}
-
-/* Rótulo centralizado sob o botão */
-.resumeWrap .callout {
-  top: calc(100% + var(--space-4));
-  translate: -50% 0;
-}
-
-/* Marca: da borda do botão até o rótulo */
-.resumeWrap .callout::before {
-  left: 50%;
-  height: var(--space-4);
 }

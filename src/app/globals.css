@@ -29,6 +29,9 @@
   --color-bg: var(--black);
   --color-surface: var(--gray-900);
   --color-surface-raised: var(--gray-850);
+  /* header rolado (mobile) e faixa do header (desktop) */
+  --color-header-scrolled: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  --color-header-pill: color-mix(in srgb, var(--color-bg) 57%, transparent);
 
   /* Textos (do mais forte ao mais sutil) */
   --color-text-primary: var(--white);
@@ -37,11 +40,8 @@
   --color-text-subtle: var(--gray-500);
   --color-on-primary: var(--gray-950);
   --color-accent: var(--green-400); /* destaque da marca: ">" do prompt */
-  --color-primary: color-mix(
-    in srgb,
-    var(--white) 92%,
-    transparent
-  ); /* botões principais */
+  /* botões principais */
+  --color-primary: color-mix(in srgb, var(--white) 92%, transparent);
   --color-primary-hover: var(--white); /* hover dos botões principais */
 
   /* Status */
@@ -68,7 +68,7 @@
 
 /*
  * Tipografia: escala mobile-first (RNF-UI-01).
- * Nomes pelo papel no texto. O breakpoint desktop (etapa 9) redefine os tamanhos.
+ * Nomes pelo papel no texto. O bloco desktop (abaixo) redefine os tamanhos.
  */
 :root {
   /* Famílias: variável do next/font + reserva do sistema */
@@ -122,7 +122,7 @@
   --space-16: 4rem; /* 64px */
   --space-32: 8rem; /* 128px: espaço entre seções no desktop */
 
-  /* Layout (mobile; o desktop redefine */
+  /* Layout (mobile; o desktop redefine) */
   --space-gutter: var(--space-6); /* margem lateral da página */
   --space-section: var(--space-16); /* padding vertical das seções */
   --container-max: 83.75rem; /* 1340px: coluna de conteúdo do desktop */
@@ -135,7 +135,16 @@
   --radius-sm: 6px; /* botão de fechar do toast */
   --radius-md: 10px; /* botões, toasts, ícones sociais */
   --radius-lg: 12px; /* terminal, cards, selos */
+  --radius-xl: 20px; /* faixa do header (desktop) */
   --radius-pill: 999px; /* etiquetas de status */
+}
+
+/*
+ * Camadas (z-index): uma escala só, para nada brigar por cima.
+ */
+:root {
+  --z-header: 10;
+  --z-skip-link: 20; /* acima do header: precisa aparecer por cima dele */
 }
 
 /*
@@ -276,7 +285,7 @@ body {
   position: fixed; /* fica no canto mesmo com a página rolada */
   top: var(--space-2);
   left: var(--space-2);
-  z-index: 100; /* acima do header fixo (etapa 4) */
+  z-index: var(--z-skip-link); /* acima do header sticky */
   padding: var(--space-2) var(--space-4);
   background: var(--color-surface-raised);
   color: var(--color-text-primary);
