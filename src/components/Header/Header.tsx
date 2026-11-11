@@ -3,9 +3,7 @@ import type { HeaderContent } from "@/content/types";
 import styles from "./Header.module.css";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { HeaderShell } from "./HeaderShell";
-
-// "2" → "02": formato do callout (#experiencia · 02/05)
-const pad = (n: number) => String(n).padStart(2, "0");
+import { NavLinks } from "./NavLinks";
 
 interface HeaderProps {
   content: HeaderContent; // por props: a v1.1 passa o conteúdo EN sem mudar o componente
@@ -35,19 +33,8 @@ export function Header({ content }: HeaderProps) {
       </a>
       {/* aria-label: dá nome ao <nav>, porque o rodapé pode ter outro no futuro */}
       <nav className={styles.nav} aria-label={content.navLabel}>
-        <ul className={styles.navList}>
-          {content.nav.map((item, index) => (
-            <li key={item.id} className={styles.navItem}>
-              <a href={`#${item.id}`} className={styles.navLink}>
-                {item.label}
-              </a>
-              {/* Decorativo: repete a âncora e a posição; o link já tem nome acessível */}
-              <span className={styles.callout} aria-hidden="true">
-                #{item.id} · {pad(index + 1)}/{pad(content.nav.length)}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {/* Só a lista vira Client Component: o <nav> continua no HTML do servidor */}
+        <NavLinks items={content.nav} />
       </nav>
       <div className={styles.resumeWrap}>
         {/* download: baixa o arquivo em vez de abrir; só funciona na mesma origem (é o caso) */}
