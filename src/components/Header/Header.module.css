@@ -8,6 +8,10 @@
   display: flex;
   align-items: center; /* centraliza avatar e texto no eixo vertical */
   justify-content: space-between; /* primeiro item na esquerda, último na direita */
+  /* Texto ampliado (200%) numa tela estreita: o botão de menu desce para uma
+     segunda linha em vez de ser esmagado ou coberto pelo nome (WCAG 1.4.4/1.4.10).
+     No tamanho normal tudo cabe numa linha e nada muda. */
+  flex-wrap: wrap;
   gap: var(--space-4); /* respiro mínimo se os itens chegarem perto */
   /* sem altura fixa: cresce com o zoom */
   padding-block: var(--space-3);
@@ -78,6 +82,8 @@
   background-color: var(--color-control-bg);
   color: var(--color-text-primary);
   cursor: pointer;
+  flex-shrink: 0; /* nunca fica menor que 40px, nem com o nome grande ao lado */
+  margin-inline-start: auto; /* se descer de linha, continua à direita */
 }
 
 /* O painel é um [popover]: fechado, o navegador o esconde (display: none);
@@ -286,6 +292,7 @@
 
 @media (min-width: 64rem) {
   .header {
+    flex-wrap: nowrap; /* a barra do desktop é uma linha só */
     padding-inline: calc(var(--space-gutter) + var(--space-10));
     padding-block: calc(var(--space-8) * 2) var(--space-8);
   }
