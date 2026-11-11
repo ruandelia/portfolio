@@ -20,6 +20,10 @@ export const site: SiteContent = {
     logoLabel: `${name}, ir para o início`,
     navLabel: "Principal",
     nav, // a lista definida no topo deste arquivo
+    menu: {
+      openLabel: "Abrir menu",
+      closeLabel: "Fechar menu",
+    },
     resume: {
       label: "Currículo",
       srHint: " (PDF)", // espaço inicial: o leitor de tela lê "Currículo (PDF)"

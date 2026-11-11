@@ -19,6 +19,10 @@ export interface HeaderContent {
   logoLabel: string;       // nome acessível do link da logo (RF-01)
   navLabel: string;        // aria-label do <nav>
   nav: readonly NavItem[]; // readonly: o componente só lê a lista
+  menu: {
+    openLabel: string;  // aria-label do botão que abre o menu mobile (só ícone)
+    closeLabel: string; // aria-label do botão que fecha
+  };
   resume: {
     label: string;  // texto visível do botão
     srHint: string; // só para leitor de tela: " (PDF)" (RF-03)
