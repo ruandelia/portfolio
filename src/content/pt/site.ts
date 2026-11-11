@@ -1,6 +1,6 @@
 import type { NavItem, SiteContent } from "../types";
 
-// Ordem da página. A posição de cada item também gera o "NN/05" do callout (etapa 3).
+// Ordem da página. A posição de cada item também gera o "NN/05" do callout.
 const nav: readonly NavItem[] = [
   { id: "sobre", label: "Sobre" },
   { id: "experiencia", label: "Experiência" },
@@ -19,7 +19,7 @@ export const site: SiteContent = {
     // Contém o texto visível "Ruan D'elia" (WCAG 2.5.3, Label in Name)
     logoLabel: `${name}, ir para o início`,
     navLabel: "Principal",
-    nav, // a lista da 1.3
+    nav, // a lista definida no topo deste arquivo
     resume: {
       label: "Currículo",
       srHint: " (PDF)", // espaço inicial: o leitor de tela lê "Currículo (PDF)"

@@ -1,6 +1,6 @@
 /* ===== Header: barra (mobile first) ===== */
 
-/* Logo à esquerda, menu à direita (etapa 6); preso no topo ao rolar */
+/* Logo à esquerda, menu à direita; preso no topo ao rolar */
 .header {
   position: sticky;
   top: 0;
@@ -49,25 +49,25 @@
 .avatar {
   width: 2.375rem; /* 38px; 51px no desktop */
   height: auto; /* mantém a proporção do arquivo */
-  border-radius: 0.5rem;
+  border-radius: var(--radius-md);
   margin-inline-end: var(--space-3);
 }
 
 .prompt {
   font-family: var(--font-mono);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--color-accent);
   margin-inline-end: 0.3em; /* proporcional ao tamanho da fonte */
 }
 
 .wordmark {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: -0.02em;
 }
 
 /* ===== Nav ===== */
 
-/* Mobile: a nav e o Currículo vão para o menu da etapa 6 */
+/* Mobile: a nav e o Currículo ficam escondidos até existir o menu mobile */
 .nav,
 .resume {
   display: none;
@@ -164,7 +164,7 @@
   }
 
   .resume:hover {
-    background: var(--color-primary-hover);
+    background-color: var(--color-primary-hover);
   }
 
   .navList:has(.navLink:hover, .navLink:focus-visible)::after {
@@ -193,7 +193,7 @@
     position: absolute;
     inset: var(--space-8) var(--space-gutter) 0;
     z-index: -1; /* atrás da logo e dos links */
-    border-radius: 1.25rem;
+    border-radius: var(--radius-xl);
     background-color: var(--color-header-pill);
     backdrop-filter: blur(5px);
     opacity: 0;
@@ -221,12 +221,14 @@
 
   .navList {
     display: flex;
-    gap: var(--space-2); 
+    /* 8px + 16px de padding de cada lado do link = 40px entre os textos, igual ao Figma.
+       O espaço fica no padding para a pílula do link ativo ter área de clique maior */
+    gap: var(--space-2);
   }
 
   .navLink {
     font-size: var(--fs-nav);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     color: var(--color-text-muted); /* 7,98:1; o #656565 do Figma reprovava */
     text-decoration: none;
     padding: var(--space-2) var(--space-4); /* área da pílula, igual em todos */
@@ -243,11 +245,11 @@
     align-items: center;
     gap: var(--space-2); /* espaço entre ícone e texto */
     padding: var(--space-3) var(--space-4); /* Figma: 10px 16px; 12px mantém a escala */
-    border-radius: 0.5rem;
-    background: var(--color-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary);
     color: var(--color-on-primary);
     font-size: var(--fs-button);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     text-decoration: none;
   }
 }

@@ -4,7 +4,7 @@
  */
 :root {
   --black: #000000;
-  --black-header: #101010; /* header do desktop e header rolado (mobile) */
+  --black-header: #101010; /* base da faixa do header (desktop) */
   --white: #ffffff;
 
   --gray-950: #0a0a0a;
@@ -34,9 +34,7 @@
   /* header rolado (mobile) e faixa do header (desktop) */
   --color-header-scrolled: color-mix(in srgb, var(--color-bg) 85%, transparent);
   --color-header-pill: color-mix(in srgb, var(--black-header) 57%, transparent);
-  --header-offset: 5rem; /* espaço que as âncoras deixam para o header */
-  --header-offset: 10rem; /* header do desktop é mais alto */
-  
+
   /* Textos (do mais forte ao mais sutil) */
   --color-text-primary: var(--white);
   --color-text-secondary: var(--gray-200);
@@ -130,6 +128,9 @@
   --space-gutter: var(--space-6); /* margem lateral da página */
   --space-section: var(--space-16); /* padding vertical das seções */
   --container-max: 83.75rem; /* 1340px: coluna de conteúdo do desktop */
+  /* Espaço que âncoras e foco deixam acima do alvo, para o header sticky não cobri-lo.
+     Um pouco maior que a altura do header (~63px no mobile) */
+  --header-offset: 5rem;
 
   /* Tamanhos de controles */
   --size-button: 3rem; /* 48px: altura dos botões e ícones sociais */
@@ -173,6 +174,7 @@
     /* Layout */
     --space-gutter: var(--space-12); /* 48px de margem mínima nas laterais */
     --space-section: var(--space-32); /* 128px entre seções */
+    --header-offset: 10rem; /* header do desktop tem ~147px */
   }
 }
 

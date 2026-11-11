@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-    <body>
+      <body>
         {/* Primeiro elemento focável da página: pula a navegação (WCAG 2.4.1) */}
         <a href="#conteudo" className="visually-hidden-focusable">
           {site.skipLink}

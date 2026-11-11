@@ -13,9 +13,6 @@ export interface NavItem {
   label: string;
 }
 
-// Teste temporário: deve dar erro, porque "experiência" não é um SectionId
-// const teste: NavItem = { id: "experiência", label: "Experiência" };
-
 // Conteúdo do header. A versão EN (v1.1) usa este mesmo tipo.
 export interface HeaderContent {
   logoText: string;        // texto visível do wordmark
