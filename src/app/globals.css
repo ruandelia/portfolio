@@ -4,6 +4,7 @@
  */
 :root {
   --black: #000000;
+  --black-header: #101010; /* header do desktop e header rolado (mobile) */
   --white: #ffffff;
 
   --gray-950: #0a0a0a;
@@ -29,10 +30,13 @@
   --color-bg: var(--black);
   --color-surface: var(--gray-900);
   --color-surface-raised: var(--gray-850);
+  --color-nav-active-bg: color-mix(in srgb, var(--white) 5%, transparent); /* pílula do link ativo */
   /* header rolado (mobile) e faixa do header (desktop) */
   --color-header-scrolled: color-mix(in srgb, var(--color-bg) 85%, transparent);
-  --color-header-pill: color-mix(in srgb, var(--color-bg) 57%, transparent);
-
+  --color-header-pill: color-mix(in srgb, var(--black-header) 57%, transparent);
+  --header-offset: 5rem; /* espaço que as âncoras deixam para o header */
+  --header-offset: 10rem; /* header do desktop é mais alto */
+  
   /* Textos (do mais forte ao mais sutil) */
   --color-text-primary: var(--white);
   --color-text-secondary: var(--gray-200);
@@ -253,6 +257,7 @@ p {
 /* Estilo base: o que toda a página herda */
 html {
   color-scheme: dark; /* barras de rolagem e controles nativos no tema escuro */
+  scroll-padding-top: var(--header-offset);
 }
 
 body {

@@ -221,7 +221,7 @@
 
   .navList {
     display: flex;
-    gap: var(--space-10); /* 40px, igual ao Figma */
+    gap: var(--space-2); 
   }
 
   .navLink {
@@ -229,6 +229,13 @@
     font-weight: 500;
     color: var(--color-text-muted); /* 7,98:1; o #656565 do Figma reprovava */
     text-decoration: none;
+    padding: var(--space-2) var(--space-4); /* área da pílula, igual em todos */
+    border-radius: var(--radius-md);
+  }
+
+  .navLink[aria-current="true"] {
+    color: var(--color-text-primary);
+    background-color: var(--color-nav-active-bg);
   }
 
   .resume {
