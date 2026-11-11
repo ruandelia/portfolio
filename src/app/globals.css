@@ -5,12 +5,14 @@
 :root {
   --black: #000000;
   --black-header: #101010; /* base da faixa do header (desktop) */
+  --black-menu: #050505; /* painel do menu mobile */
   --white: #ffffff;
 
   --gray-950: #0a0a0a;
   --gray-900: #0d0d0f;
   --gray-850: #141414;
   --gray-800: #2f2f2f; /* ornamentos decorativos das seções */
+  --gray-450: #8a8a8a; /* base dos botões secundários */
   --gray-500: #808080;
   --gray-400: #a6a6a6;
   --gray-200: #e6e6e6;
@@ -30,7 +32,13 @@
   --color-bg: var(--black);
   --color-surface: var(--gray-900);
   --color-surface-raised: var(--gray-850);
-  --color-nav-active-bg: color-mix(in srgb, var(--white) 5%, transparent); /* pílula do link ativo */
+  /* fundo do link ativo: 4% no menu mobile, 5% na pílula do desktop (Figma) */
+  --color-nav-active-bg: color-mix(in srgb, var(--white) 4%, transparent);
+  --color-menu-bg: var(--black-menu); /* painel do menu mobile */
+  /* véu atrás do painel do menu; toque nele fecha */
+  --color-overlay: color-mix(in srgb, var(--black) 60%, transparent);
+  /* botões secundários (menu mobile, "Entrar em contato") */
+  --color-control-bg: color-mix(in srgb, var(--gray-450) 17%, transparent);
   /* header rolado (mobile) e faixa do header (desktop) */
   --color-header-scrolled: color-mix(in srgb, var(--color-bg) 85%, transparent);
   --color-header-pill: color-mix(in srgb, var(--black-header) 57%, transparent);
@@ -39,6 +47,7 @@
   --color-text-primary: var(--white);
   --color-text-secondary: var(--gray-200);
   --color-text-muted: var(--gray-400);
+  --color-text-menu: color-mix(in srgb, var(--white) 70%, transparent); /* links do menu mobile */
   --color-text-subtle: var(--gray-500);
   --color-on-primary: var(--gray-950);
   --color-accent: var(--green-400); /* destaque da marca: ">" do prompt */
@@ -55,6 +64,8 @@
   /* Bordas: transparência derivada da primitiva com color-mix() */
   --color-border: color-mix(in srgb, var(--white) 25%, transparent);
   --color-border-subtle: color-mix(in srgb, var(--white) 12%, transparent);
+  --color-border-faint: color-mix(in srgb, var(--white) 10%, transparent); /* borda do painel do menu */
+  --color-border-control: color-mix(in srgb, var(--white) 15%, transparent); /* botões secundários */
 
   /* Selo "em preparação": par fundo + borda */
   --color-progress-bg: color-mix(in srgb, var(--amber-600) 8%, transparent);
@@ -89,7 +100,7 @@
   --fs-item: 1.0625rem; /* 17px: títulos de itens (cargo, projeto) */
   --fs-subtitle: 1.25rem; /* 20px: subtítulo do hero */
   --fs-logo: 1.375rem; /* 22px: wordmark do header */
-  --fs-nav: 1.375rem; /* 22px: links da navbar (desktop) */
+  --fs-nav: 1.25rem; /* 20px: links do menu mobile */
   --fs-section: 1.5rem; /* 24px: títulos de seção */
   --fs-h1: 2rem; /* 32px: "Olá, eu sou o Ruan" */
 
@@ -129,12 +140,16 @@
   --space-section: var(--space-16); /* padding vertical das seções */
   --container-max: 83.75rem; /* 1340px: coluna de conteúdo do desktop */
   /* Espaço que âncoras e foco deixam acima do alvo, para o header sticky não cobri-lo.
-     Um pouco maior que a altura do header (~63px no mobile) */
+     Um pouco maior que a altura do header (72px no mobile) */
   --header-offset: 5rem;
 
   /* Tamanhos de controles */
   --size-button: 3rem; /* 48px: altura dos botões e ícones sociais */
   --size-touch: 2.75rem; /* 44px: área de toque confortável (WCAG 2.5.5, nível AAA; o mínimo AA é 24px) */
+  --size-icon-button: 2.5rem; /* 40px: botões só com ícone (menu mobile) */
+  --size-menu-item: 3.5rem; /* 56px: altura dos links do menu mobile */
+  --size-cta: 3.25rem; /* 52px: botão Currículo no menu mobile */
+  --menu-panel-width: 18.75rem; /* 300px: painel do menu mobile */
 
   /* Raios de borda: em px, porque não precisam crescer com a fonte */
   --radius-sm: 6px; /* botão de fechar do toast */
@@ -156,6 +171,7 @@
  * Desktop: a partir de 1024px.
  * Só redefine os valores; os nomes dos tokens são os mesmos do mobile.
  * Tablets (768px a 1023px) ficam com o layout mobile.
+ * Exceção: o header só vira desktop em 1280px (bloco seguinte, ADR 0001).
  */
 @media (min-width: 64rem) {
   :root {
@@ -166,7 +182,6 @@
     --fs-lead: 1.25rem; /* 20px: texto do Sobre */
     --fs-item: 1.375rem; /* 22px: cargos e nomes de projeto */
     --fs-section: 1.875rem; /* 30px */
-    --fs-logo: 1.875rem; /* 30px */
     --fs-subtitle: 2.125rem; /* 34px */
     --fs-h1: 3.5rem; /* 56px */
     --fs-terminal: 1.125rem; /* 18px */
@@ -174,6 +189,19 @@
     /* Layout */
     --space-gutter: var(--space-12); /* 48px de margem mínima nas laterais */
     --space-section: var(--space-32); /* 128px entre seções */
+  }
+}
+
+/*
+ * Header desktop: a partir de 1280px (ADR 0001).
+ * Entre 1024 e 1279px o header segue no layout mobile (com menu), então os
+ * tokens que só ele usa mudam aqui, junto com o Header.module.css.
+ */
+@media (min-width: 80rem) {
+  :root {
+    --fs-logo: 1.875rem; /* 30px */
+    --fs-nav: 1.375rem; /* 22px: links da navbar */
+    --color-nav-active-bg: color-mix(in srgb, var(--white) 5%, transparent);
     --header-offset: 10rem; /* header do desktop tem ~147px */
   }
 }
@@ -260,6 +288,10 @@ p {
 html {
   color-scheme: dark; /* barras de rolagem e controles nativos no tema escuro */
   scroll-padding-top: var(--header-offset);
+  /* Reserva o espaço da barra de rolagem mesmo quando ela some (menu aberto
+     trava a rolagem): sem isso a página e o header pulam para o lado.
+     Sem efeito onde a barra é sobreposta (celulares, macOS). */
+  scrollbar-gutter: stable;
 }
 
 body {

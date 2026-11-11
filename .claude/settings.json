@@ -1,11 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "defaultMode": "default",
+    "defaultMode": "acceptEdits",
     "disableAutoMode": "disable",
     "disableBypassPermissionsMode": "disable",
-    "ask": ["Edit", "Write"],
-    "allow": ["Bash(npm run lint)", "Bash(npm run build)", "Bash(npx tsc --noEmit)"],
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run build)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ],
+    "ask": ["Bash(npm install *)", "Bash(npm i *)", "Bash(npm uninstall *)"],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
@@ -15,7 +21,6 @@
       "Edit(./.github/**)",
       "Edit(./docs/infra/**)",
       "Bash(gcloud *)",
-      "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(git reset *)",
       "Bash(git rebase *)"
