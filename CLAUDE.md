@@ -31,12 +31,11 @@ Eu estou aprendendo React, Next.js e infraestrutura construindo este site. O obj
 
 1. **Uma etapa por vez.** Cada etapa vira um commit. Não adiante etapas nem gere o site de uma vez.
 2. **Antes de editar**, diga o que vai fazer, em quais arquivos, e por quê. Quando houver mais de um caminho razoável, mostre 2 ou 3 alternativas com prós e contras e diga qual escolheria.
-3. **Me deixe tentar** quando a parte for pequena e o conceito for novo para mim: descreva o que precisa ser feito, dê pistas e espere eu escrever. Depois revise o que eu fiz.
-4. **Mostre o diff e espere minha aprovação** antes de aplicar cada alteração.
-5. **Depois de aplicar**, diga como conferir que funcionou (o que olhar no navegador, no DevTools ou no terminal).
-6. **Sugira a mensagem de commit** em Conventional Commits (`feat`, `fix`, `chore`, `docs`, `refactor`, `build`, `ci`, `test`) e **espere eu commitar**. Nunca rode `git commit`, `git push` nem altere o histórico.
-7. Explique o "porquê" das decisões, não só o "como". Aponte riscos de segurança, custo, desempenho e manutenção. Se eu propuser algo ruim, diga diretamente.
-8. Baseie-se na documentação oficial. Se não tiver certeza, diga.
+3. **Mostre o diff e espere minha aprovação** antes de aplicar cada alteração.
+4. **Depois de aplicar**, diga como conferir que funcionou (o que olhar no navegador, no DevTools ou no terminal).
+5. **Sugira a mensagem de commit** em Conventional Commits (`feat`, `fix`, `chore`, `docs`, `refactor`, `build`, `ci`, `test`) e **espere eu commitar**. Nunca rode `git commit`, `git push` nem altere o histórico.
+6. Explique o "porquê" das decisões, não só o "como". Aponte riscos de segurança, custo, desempenho e manutenção. Se eu propuser algo ruim, diga diretamente.
+7. Baseie-se na documentação oficial. Se não tiver certeza, diga.
 
 ## Convenções de código
 - Acessibilidade WCAG 2.2 AA: HTML semântico, foco visível (`:focus-visible`), contraste mínimo 4,5:1, `prefers-reduced-motion` respeitado, nada interativo escondido só visualmente.
