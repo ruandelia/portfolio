@@ -4,7 +4,8 @@
     "defaultMode": "default",
     "disableAutoMode": "disable",
     "disableBypassPermissionsMode": "disable",
-    "ask": ["Edit", "Write", "Bash"],
+    "ask": ["Edit", "Write"],
+    "allow": ["Bash(npm run lint)", "Bash(npm run build)", "Bash(npx tsc --noEmit)"],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
