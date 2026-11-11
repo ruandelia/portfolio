@@ -288,6 +288,10 @@ p {
 html {
   color-scheme: dark; /* barras de rolagem e controles nativos no tema escuro */
   scroll-padding-top: var(--header-offset);
+  /* Reserva o espaço da barra de rolagem mesmo quando ela some (menu aberto
+     trava a rolagem): sem isso a página e o header pulam para o lado.
+     Sem efeito onde a barra é sobreposta (celulares, macOS). */
+  scrollbar-gutter: stable;
 }
 
 body {

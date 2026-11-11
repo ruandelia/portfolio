@@ -122,11 +122,15 @@
   overflow: hidden;
 }
 
-/* Faixa do topo do painel, com o Fechar no lugar onde estava o Abrir */
+/* Faixa do topo do painel. Desvio aprovado do Figma: lá o ✕ fica a 24px da
+   borda do painel; aqui ele fica exatamente onde está o ☰, como se fosse o
+   mesmo botão trocando de ícone. Por isso usa os mesmos tokens do padding do
+   header (bloco e lateral), e não um valor próprio. */
 .menuTop {
   display: flex;
   justify-content: flex-end;
-  padding: var(--space-4) var(--space-6);
+  padding-block: var(--space-4);
+  padding-inline-end: var(--space-gutter);
 }
 
 /* ===== Nav ===== */
