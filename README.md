@@ -41,6 +41,19 @@ npm run lint    # verificar o código com o ESLint
 npm run build   # gerar o build de produção
 ```
 
+### Variáveis de build
+
+São lidas durante o `npm run build` e ficam fixas no HTML gerado. Nenhuma é secreta e todas são opcionais:
+
+| Variável | Valores | Sem a variável |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_INDEXABLE` | `true` libera a indexação; qualquer outro valor mantém `noindex` | `noindex, nofollow` |
+| `NEXT_PUBLIC_SITE_VERSION` | a tag do Git da versão (ex.: `v1.0.0`) | `dev` |
+
+```bash
+NEXT_PUBLIC_SITE_INDEXABLE=true NEXT_PUBLIC_SITE_VERSION=v1.0.0 npm run build
+```
+
 ## Roadmap
 
 O site é entregue em versões pequenas, cada uma publicada assim que fica pronta.

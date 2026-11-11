@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header/Header";
 import { site } from "@/content/pt/site";
+import { siteIndexable } from "@/lib/build-env";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
   title: "Ruan D'elia · Cloud · Dados · IA",
   description:
     "Estagiário em Cloud Services na QI Network, parceira do Google Cloud. Explorando Google Cloud, dados e IA na prática, com base em desenvolvimento.",
+  // Antes do lançamento, a página fica acessível ao robô, mas sem entrar no
+  // índice. Bloquear no robots.txt impediria o robô de ler este noindex.
+  robots: siteIndexable ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
