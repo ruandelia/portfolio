@@ -140,7 +140,7 @@
   --space-section: var(--space-16); /* padding vertical das seções */
   --container-max: 83.75rem; /* 1340px: coluna de conteúdo do desktop */
   /* Espaço que âncoras e foco deixam acima do alvo, para o header sticky não cobri-lo.
-     Um pouco maior que a altura do header (~63px no mobile) */
+     Um pouco maior que a altura do header (72px no mobile) */
   --header-offset: 5rem;
 
   /* Tamanhos de controles */
