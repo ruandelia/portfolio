@@ -40,8 +40,9 @@ export function MenuPopover({ id, className, children }: MenuPopoverProps) {
       if (event.target instanceof Node && !menu.contains(event.target)) close();
     };
 
-    // Virou desktop com o menu aberto: lá a nav fica na barra, não no painel
-    const desktop = window.matchMedia("(min-width: 64rem)");
+    // Virou desktop com o menu aberto: lá a nav fica na barra, não no painel.
+    // Mesmo valor do @media do Header.module.css (ADR 0001); mude os dois juntos.
+    const desktop = window.matchMedia("(min-width: 80rem)");
 
     menu.addEventListener("toggle", onToggle);
     menu.addEventListener("click", onClick);

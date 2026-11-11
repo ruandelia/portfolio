@@ -8,7 +8,7 @@ Design no Figma (frames desktop 1680px e mobile 390px). O código segue o Figma,
 ## Stack e arquitetura
 - Next.js (App Router) com exportação estática (`output: "export"`), React 19, TypeScript sem `any`.
 - Estilos: CSS Modules por componente + tokens globais em `src/app/globals.css` (primitivas → semânticos). Sem Tailwind. Componentes nunca usam valores crus (hex, px soltos) quando existe token.
-- Mobile first, breakpoint único `@media (min-width: 64rem)` (literal: variáveis CSS não funcionam em `@media`).
+- Mobile first. Breakpoint do site: `@media (min-width: 64rem)`. Exceção: o header (nav, Currículo e menu) usa `@media (min-width: 80rem)` ([ADR 0001](docs/adr/0001-breakpoint-do-header.md)); o mesmo valor aparece no `matchMedia` do `MenuPopover`. Literais: variáveis CSS não funcionam em `@media`.
 - Server Components por padrão. Client Components só como "ilhas" mínimas (ex.: `HeaderShell`, `NavLinks`); o JS decide estados via `data-*`/`aria-*`, o CSS desenha.
 - Conteúdo tipado em `src/content/` (por idioma), componentes em `src/components/`.
 - Hospedagem (contexto; quem cuida é o Ruan): o build estático (`out/`) é servido por nginx num container no Cloud Run, com deploy por GitHub Actions + Workload Identity Federation, sem chave de conta de serviço.

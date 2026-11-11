@@ -288,9 +288,12 @@
   }
 }
 
-/* ===== Desktop ===== */
+/* ===== Desktop do header: a partir de 1280px (ADR 0001) =====
+   O resto do site vira desktop em 64rem; o header só em 80rem, porque entre
+   1024 e 1279px logo + nav + Currículo não cabem numa linha. Nessa faixa ele
+   continua com o menu mobile. */
 
-@media (min-width: 64rem) {
+@media (min-width: 80rem) {
   .header {
     flex-wrap: nowrap; /* a barra do desktop é uma linha só */
     padding-inline: calc(var(--space-gutter) + var(--space-10));

@@ -171,6 +171,7 @@
  * Desktop: a partir de 1024px.
  * Só redefine os valores; os nomes dos tokens são os mesmos do mobile.
  * Tablets (768px a 1023px) ficam com o layout mobile.
+ * Exceção: o header só vira desktop em 1280px (bloco seguinte, ADR 0001).
  */
 @media (min-width: 64rem) {
   :root {
@@ -181,18 +182,26 @@
     --fs-lead: 1.25rem; /* 20px: texto do Sobre */
     --fs-item: 1.375rem; /* 22px: cargos e nomes de projeto */
     --fs-section: 1.875rem; /* 30px */
-    --fs-logo: 1.875rem; /* 30px */
-    --fs-nav: 1.375rem; /* 22px: links da navbar */
     --fs-subtitle: 2.125rem; /* 34px */
     --fs-h1: 3.5rem; /* 56px */
     --fs-terminal: 1.125rem; /* 18px */
 
-    /* Cores */
-    --color-nav-active-bg: color-mix(in srgb, var(--white) 5%, transparent);
-
     /* Layout */
     --space-gutter: var(--space-12); /* 48px de margem mínima nas laterais */
     --space-section: var(--space-32); /* 128px entre seções */
+  }
+}
+
+/*
+ * Header desktop: a partir de 1280px (ADR 0001).
+ * Entre 1024 e 1279px o header segue no layout mobile (com menu), então os
+ * tokens que só ele usa mudam aqui, junto com o Header.module.css.
+ */
+@media (min-width: 80rem) {
+  :root {
+    --fs-logo: 1.875rem; /* 30px */
+    --fs-nav: 1.375rem; /* 22px: links da navbar */
+    --color-nav-active-bg: color-mix(in srgb, var(--white) 5%, transparent);
     --header-offset: 10rem; /* header do desktop tem ~147px */
   }
 }
