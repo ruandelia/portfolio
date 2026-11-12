@@ -50,7 +50,7 @@ Você trabalha com autonomia no código do app. Eu não escrevo código nem apro
 - Links externos com `target="_blank"` levam `rel="noopener noreferrer"`.
 
 ## Ambiente
-- Windows com WSL 2 (Ubuntu). O repositório fica dentro do sistema de arquivos do WSL; use bash.
+- Ubuntu nativo (dual boot); use bash.
 - Node via nvm (versão no `.nvmrc`).
 
 ## Comandos
